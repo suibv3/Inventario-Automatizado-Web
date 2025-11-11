@@ -1,6 +1,8 @@
 import streamlit as st
 import pandas as pd
 import io
+import openpyxl
+import xlsxwriter
 
 # =============================
 # CONFIGURACIÓN DE LA PÁGINA
