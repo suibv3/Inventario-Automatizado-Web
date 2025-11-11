@@ -2,7 +2,7 @@ import streamlit as st
 import pandas as pd
 import io
 
-import xlsxwriter
+
 
 # =============================
 # CONFIGURACIÓN DE LA PÁGINA
@@ -126,4 +126,5 @@ if archivo:
         st.error(f"Ocurrió un error al procesar el archivo: {e}")
 else:
     st.info("📤 Sube un archivo Excel para comenzar el análisis.")
+
 
