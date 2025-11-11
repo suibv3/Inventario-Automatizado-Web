@@ -148,7 +148,7 @@ if archivo:
                     if len(series_val) > 20:
                         series_val = series_val.nlargest(20)
                     fig, ax = plt.subplots(figsize=(5,5))
-                    ax.pie(series_val, labels=series_val.index, autopct='%1.1f%%', startangle=90)
+                    ax.pie(series_val, labels=series_val.index, startangle=90)
                     ax.axis('equal')
                     st.pyplot(fig)
                 else:
@@ -288,3 +288,4 @@ if archivo:
 
 else:
     st.info("📤 Sube un archivo Excel para comenzar el análisis.")
+
