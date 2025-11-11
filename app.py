@@ -51,7 +51,7 @@ def detectar_y_normalizar_columnas(df: pd.DataFrame):
 # ---------------- Sidebar / file uploader ----------------
 st.sidebar.header("⚙️ Configuración")
 st.sidebar.info("Sube un archivo Excel (.xlsx/.xls). "
-                "Se requieren al menos: Producto, Stock , Precio .")
+                "Se requieren al menos las siguientes categorias: Producto, Stock , Precio.")
 archivo = st.sidebar.file_uploader("Selecciona el archivo Excel", type=["xlsx", "xls"])
 
 # ---------------- Main processing ----------------
@@ -288,4 +288,5 @@ if archivo:
 
 else:
     st.info("📤 Sube un archivo Excel para comenzar el análisis.")
+
 
