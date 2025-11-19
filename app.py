@@ -48,105 +48,6 @@ st.sidebar.info("Sube un archivo Excel (.xlsx/.xls). "
 
 archivo = st.sidebar.file_uploader("Selecciona el archivo Excel", type=["xlsx", "xls"])
 
-
-
-import base64
-
-# ======= Cargar imagen QR de Yape =======
-def load_base64_image(path):
-    with open(path, "rb") as f:
-        return base64.b64encode(f.read()).decode()
-
-qr_base64 = load_base64_image("qr_yape.png")
-
-# ======= Estilos con checkbox hack =======
-st.markdown("""
-<style>
-
-.floating-container {
-    position: fixed;
-    bottom: 30px;
-    right: 30px;
-    z-index: 9999;
-}
-
-/* Ocultar el checkbox */
-#toggleDonation {
-    display: none;
-}
-
-/* Botón flotante */
-.floating-button {
-    background: #0066ff;
-    color: white;
-    width: 60px;
-    height: 60px;
-    border-radius: 50%;
-    font-size: 35px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    cursor: pointer;
-    box-shadow: 0px 4px 15px rgba(0,0,0,0.25);
-    transition: transform 0.2s ease-in-out;
-}
-
-.floating-button:hover {
-    transform: scale(1.15);
-}
-
-/* Tarjeta oculta por defecto */
-.card {
-    width: 260px;
-    background: white;
-    padding: 15px;
-    border-radius: 12px;
-    box-shadow: 0px 4px 25px rgba(0,0,0,0.20);
-    margin-bottom: 10px;
-    opacity: 0;
-    transform: translateY(10px);
-    transition: all 0.3s ease;
-    pointer-events: none;
-}
-
-/* Mostrar tarjeta cuando checkbox está activado */
-#toggleDonation:checked ~ .card {
-    opacity: 1;
-    transform: translateY(0);
-    pointer-events: auto;
-}
-
-.qr-img {
-    width: 100%;
-    border-radius: 10px;
-}
-
-</style>
-""", unsafe_allow_html=True)
-
-# ======= HTML con checkbox-hack =======
-st.markdown(f"""
-<div class="floating-container">
-
-    <input type="checkbox" id="toggleDonation">
-
-    <label for="toggleDonation" class="floating-button">
-        💙
-    </label>
-
-    <div class="card">
-        <h4 style="margin-top: 0;">Apóyame con Yape 💙</h4>
-        <img src="data:image/png;base64,{qr_base64}" class="qr-img">
-        <p style="font-size: 14px; text-align: center; margin-top: 10px;">
-            ¡Gracias por apoyar el proyecto!
-        </p>
-    </div>
-
-</div>
-""", unsafe_allow_html=True)
-
-
-
 # ---------------- Main processing ----------------
 if archivo:
     try:
@@ -329,5 +230,6 @@ if archivo:
 
 else:
     st.info("📤 Sube un archivo Excel para empezar.")
+
 
 
