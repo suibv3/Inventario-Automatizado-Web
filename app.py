@@ -59,7 +59,7 @@ def load_base64_image(path):
 
 qr_base64 = load_base64_image("qr_yape.png")
 
-# ======= Estilos CSS (botón flotante moderno) =======
+# ======= Estilos con checkbox hack =======
 st.markdown("""
 <style>
 
@@ -70,6 +70,12 @@ st.markdown("""
     z-index: 9999;
 }
 
+/* Ocultar el checkbox */
+#toggleDonation {
+    display: none;
+}
+
+/* Botón flotante */
 .floating-button {
     background: #0066ff;
     color: white;
@@ -89,6 +95,7 @@ st.markdown("""
     transform: scale(1.15);
 }
 
+/* Tarjeta oculta por defecto */
 .card {
     width: 260px;
     background: white;
@@ -99,11 +106,14 @@ st.markdown("""
     opacity: 0;
     transform: translateY(10px);
     transition: all 0.3s ease;
+    pointer-events: none;
 }
 
-.card.show {
+/* Mostrar tarjeta cuando checkbox está activado */
+#toggleDonation:checked ~ .card {
     opacity: 1;
     transform: translateY(0);
+    pointer-events: auto;
 }
 
 .qr-img {
@@ -114,24 +124,23 @@ st.markdown("""
 </style>
 """, unsafe_allow_html=True)
 
-# ======= HTML botón + acordeón =======
+# ======= HTML con checkbox-hack =======
 st.markdown(f"""
 <div class="floating-container">
-  
-  <div id="donationCard" class="card">
-      <h4 style="margin-top: 0;">Apóyame con Yape 💙</h4>
-      <img src="data:image/png;base64,{qr_base64}" class="qr-img">
-      <p style="font-size: 14px; text-align: center; margin-top: 10px;">
-        ¡Gracias por apoyar el proyecto!
-      </p>
-  </div>
 
-  <div class="floating-button" onclick="
-      var card = document.getElementById('donationCard');
-      card.classList.toggle('show');
-  ">
-      💙
-  </div>
+    <input type="checkbox" id="toggleDonation">
+
+    <label for="toggleDonation" class="floating-button">
+        💙
+    </label>
+
+    <div class="card">
+        <h4 style="margin-top: 0;">Apóyame con Yape 💙</h4>
+        <img src="data:image/png;base64,{qr_base64}" class="qr-img">
+        <p style="font-size: 14px; text-align: center; margin-top: 10px;">
+            ¡Gracias por apoyar el proyecto!
+        </p>
+    </div>
 
 </div>
 """, unsafe_allow_html=True)
@@ -320,4 +329,5 @@ if archivo:
 
 else:
     st.info("📤 Sube un archivo Excel para empezar.")
+
 
